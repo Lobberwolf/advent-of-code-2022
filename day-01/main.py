@@ -27,15 +27,21 @@ def get_sum_grouped_inventories(inputs:list) -> list:
         sum_grouped_inventories.sort()
     return sum_grouped_inventories
 
+def get_sum_top_x_calories(inputs:list, top_x:int) -> int:
+    sum_top_x_calories = 0
+    for input in inputs[-top_x:]:
+        sum_top_x_calories += input
+    return sum_top_x_calories
 
-def main():
-    PUZZLE_INPUT_TXT = "day-01-copy/puzzle_inputs.txt"
-    SEPARATOR = ""
-
-    puzzle_inputs = get_puzzle_inputs(PUZZLE_INPUT_TXT)
-    grouped_inventories = get_grouped_inventories(puzzle_inputs, SEPARATOR)
+def main(filepath:str, separator:str, top_x:int) -> None:
+    puzzle_inputs = get_puzzle_inputs(filepath)
+    grouped_inventories = get_grouped_inventories(puzzle_inputs, separator)
     sum_grouped_inventories = get_sum_grouped_inventories(grouped_inventories)
+    print(get_sum_top_x_calories(sum_grouped_inventories, top_x))
 
-    print(sum_grouped_inventories[-3:])
-
-main()
+if __name__ == "__main__":
+    PUZZLE_INPUT_TXT = "day-01/puzzle_inputs.txt"
+    SEPARATOR = ""
+    TOP_X = 3
+    
+    main(PUZZLE_INPUT_TXT, SEPARATOR, TOP_X)
