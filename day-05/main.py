@@ -33,10 +33,10 @@ def get_moves(filepath: str) -> list:
 
 def move_crates(stacks: dict, moves: list, crane: str) -> str:
     for move in moves:
-        if crane == "9000":
+        if crane == "9000": # move one crate at a time
             for i in range(move[0]):
                 stacks[move[2]].append(stacks[move[1]].pop())
-        elif crane == "9001":
+        elif crane == "9001": # moves multiple crates a time
             bulk = [] # for in between step
             for i in range(move[0]):
                 bulk.append(stacks[move[1]].pop())
