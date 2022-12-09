@@ -1,6 +1,7 @@
 def get_stacks(filepath: str) -> dict:
+    """Creates a dict which contains a list for each stack"""
     lines = open(filepath, "r").readlines()
-    line_length = len(lines[0].replace("\n","")[1::4])
+    line_length = len(lines[0].replace("\n","")[1::4]) # outputs length of all crates as single letters or " "
     stacks = {}
 
     for i in range(line_length+1):
@@ -18,6 +19,7 @@ def get_stacks(filepath: str) -> dict:
     return stacks
             
 def get_moves(filepath: str) -> list:
+    """Creates a list of tuples which contain all moves"""
     lines = open(filepath, "r").readlines()
     moves = []
 
@@ -35,7 +37,7 @@ def move_crates(stacks: dict, moves: list, crane: str) -> str:
             for i in range(move[0]):
                 stacks[move[2]].append(stacks[move[1]].pop())
         elif crane == "9001":
-            bulk = []
+            bulk = [] # for in between step
             for i in range(move[0]):
                 bulk.append(stacks[move[1]].pop())
             for i in range(move[0]):
